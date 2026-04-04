@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://themonkeylady.com/sitemap.xml
+Sitemap: https://themonkeyladysgift.com/sitemap.xml
