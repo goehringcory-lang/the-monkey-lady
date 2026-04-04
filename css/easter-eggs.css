@@ -1,0 +1,327 @@
+/* ============================================
+   Easter Egg Styles
+   ============================================ */
+
+/* ----- Screen Shake ----- */
+.ee-shake {
+    animation: eeShake 0.15s infinite;
+}
+
+@keyframes eeShake {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(-4px, 2px); }
+    50% { transform: translate(3px, -3px); }
+    75% { transform: translate(-2px, 4px); }
+}
+
+/* =============================================
+   Easter Egg 1: Monkey Drop
+   ============================================= */
+
+.ee-monkey {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.ee-monkey__vine {
+    width: 3px;
+    height: 0;
+    background: #3D7A2A;
+    margin: 0 auto;
+    border-radius: 2px;
+    transition: height 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.ee-monkey--swing .ee-monkey__vine {
+    height: 180px;
+}
+
+.ee-monkey__body {
+    position: relative;
+    width: 80px;
+    height: 70px;
+    background: #8B5E3C;
+    border-radius: 40px 40px 30px 30px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: rotate(0deg);
+    transform-origin: top center;
+    transition: opacity 0.3s, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.ee-monkey--swing .ee-monkey__body {
+    opacity: 1;
+    animation: eeMonkeySwing 1.5s ease-in-out 0.8s 3;
+}
+
+.ee-monkey--exit .ee-monkey__vine {
+    height: 0;
+    transition: height 0.6s ease-in;
+}
+
+.ee-monkey--exit .ee-monkey__body {
+    opacity: 0;
+    transition: opacity 0.4s ease-in;
+}
+
+.ee-monkey__face {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 40px;
+    background: #D4A76A;
+    border-radius: 25px;
+}
+
+.ee-monkey__eyes {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    padding-top: 10px;
+}
+
+.ee-monkey__eyes span {
+    width: 8px;
+    height: 8px;
+    background: #1C1C1C;
+    border-radius: 50%;
+    animation: eeBlink 3s infinite;
+}
+
+.ee-monkey__mouth {
+    width: 16px;
+    height: 8px;
+    border-bottom: 3px solid #6B4226;
+    border-radius: 0 0 50% 50%;
+    margin: 4px auto 0;
+}
+
+.ee-monkey__arm {
+    position: absolute;
+    top: -8px;
+    width: 14px;
+    height: 40px;
+    background: #8B5E3C;
+    border-radius: 7px;
+}
+
+.ee-monkey__arm--left {
+    left: -6px;
+    transform: rotate(20deg);
+    transform-origin: top center;
+}
+
+.ee-monkey__arm--right {
+    right: -6px;
+    transform: rotate(-20deg);
+    transform-origin: top center;
+}
+
+.ee-monkey__tail {
+    position: absolute;
+    bottom: -10px;
+    right: -15px;
+    width: 40px;
+    height: 40px;
+    border: 4px solid #8B5E3C;
+    border-color: #8B5E3C transparent transparent transparent;
+    border-radius: 50%;
+    transform: rotate(-30deg);
+}
+
+@keyframes eeMonkeySwing {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(15deg); }
+    75% { transform: rotate(-15deg); }
+}
+
+@keyframes eeBlink {
+    0%, 45%, 55%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(0.1); }
+}
+
+/* =============================================
+   Easter Egg 2: Volcano Eruption
+   ============================================= */
+
+.ee-volcano {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    pointer-events: none;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.ee-volcano--active {
+    opacity: 1;
+}
+
+.ee-volcano--fade {
+    opacity: 0;
+    transition: opacity 1.5s ease-out;
+}
+
+/* Mountain silhouette */
+.ee-volcano__mountain {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 30vw solid transparent;
+    border-right: 30vw solid transparent;
+    border-bottom: 45vh solid #2C2C2C;
+}
+
+/* Crater opening */
+.ee-volcano__crater {
+    position: absolute;
+    bottom: 45vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12vw;
+    height: 3vh;
+    background: #B33A2B;
+    border-radius: 50%;
+    box-shadow: 0 0 40px 15px rgba(255, 80, 20, 0.6),
+                0 0 80px 30px rgba(255, 120, 20, 0.3);
+    animation: eeCraterGlow 0.3s ease-in-out infinite alternate;
+}
+
+/* Smoke cloud */
+.ee-volcano__smoke-cloud {
+    position: absolute;
+    bottom: 46vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20vw;
+    height: 20vw;
+    background: radial-gradient(ellipse, rgba(80, 80, 80, 0.7) 0%, rgba(60, 60, 60, 0.3) 40%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.ee-volcano--active .ee-volcano__smoke-cloud {
+    animation: eeSmoke 4s ease-out forwards;
+}
+
+/* Lava pool at crater */
+.ee-volcano__lava-pool {
+    position: absolute;
+    bottom: 44vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 14vw;
+    height: 4vh;
+    background: linear-gradient(to bottom, #FF4500, #FF6A00, #FFD700);
+    border-radius: 0 0 50% 50%;
+    opacity: 0;
+    filter: blur(2px);
+}
+
+.ee-volcano--active .ee-volcano__lava-pool {
+    animation: eeLavaPool 1s 0.5s ease-out forwards;
+}
+
+/* Lava blobs flying up then falling */
+.ee-volcano__blob {
+    position: fixed;
+    bottom: 45vh;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #FFD700, #FF6A00, #FF4500, #B33A2B);
+    box-shadow: 0 0 8px 2px rgba(255, 100, 0, 0.6);
+    opacity: 0;
+    z-index: 9999;
+}
+
+.ee-volcano--active .ee-volcano__blob {
+    animation: eeBlobLaunch ease-out forwards;
+}
+
+/* Lava streams flowing down the mountain */
+.ee-volcano__stream {
+    position: absolute;
+    bottom: 0;
+    width: 6px;
+    height: 0;
+    background: linear-gradient(to bottom, #FF4500, #FF6A00 30%, #FFD700 60%, rgba(255, 69, 0, 0.3) 100%);
+    border-radius: 3px;
+    filter: blur(1px);
+    opacity: 0;
+}
+
+.ee-volcano--active .ee-volcano__stream {
+    animation: eeLavaStream 3s ease-out forwards;
+}
+
+/* Keyframes */
+
+@keyframes eeCraterGlow {
+    from { box-shadow: 0 0 40px 15px rgba(255, 80, 20, 0.6), 0 0 80px 30px rgba(255, 120, 20, 0.3); }
+    to { box-shadow: 0 0 60px 25px rgba(255, 80, 20, 0.8), 0 0 100px 50px rgba(255, 120, 20, 0.4); }
+}
+
+@keyframes eeSmoke {
+    0% { opacity: 0; transform: translateX(-50%) scale(0.3); bottom: 46vh; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0; transform: translateX(-50%) scale(3); bottom: 80vh; }
+}
+
+@keyframes eeLavaPool {
+    0% { opacity: 0; transform: translateX(-50%) scaleY(0); }
+    100% { opacity: 0.9; transform: translateX(-50%) scaleY(1); }
+}
+
+@keyframes eeBlobLaunch {
+    0% {
+        opacity: 1;
+        bottom: 45vh;
+        transform: translateX(0) scale(1);
+    }
+    30% {
+        opacity: 1;
+        bottom: calc(45vh + 40vh);
+        transform: translateX(10px) scale(1.2);
+    }
+    100% {
+        opacity: 0;
+        bottom: -5vh;
+        transform: translateX(-20px) scale(0.5);
+    }
+}
+
+@keyframes eeLavaStream {
+    0% {
+        height: 0;
+        opacity: 0;
+        bottom: 44vh;
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        height: 50vh;
+        opacity: 0.7;
+        bottom: 0;
+    }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .ee-monkey,
+    .ee-volcano {
+        display: none !important;
+    }
+    .ee-shake {
+        animation: none !important;
+    }
+}
