@@ -902,40 +902,27 @@ blockquote {
     font-size: 1.0625rem;
 }
 
-.contact__social {
-    margin-top: 2rem;
-}
-
-.contact__social-label {
+.contact__email-label {
     font-size: 0.875rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--color-ink);
-    margin-bottom: 0.75rem;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
 }
 
-.contact__social-links {
-    display: flex;
-    gap: 1rem;
+.contact__email-link {
+    color: var(--color-teal);
+    font-size: 1.0625rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color var(--transition);
 }
 
-.contact__social-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: var(--color-jungle);
-    color: white;
-    transition: all var(--transition);
-}
-
-.contact__social-link:hover {
-    background: var(--color-teal);
-    color: white;
-    transform: translateY(-2px);
+.contact__email-link:hover {
+    color: var(--color-amber);
+    text-decoration: underline;
 }
 
 /* Form */
