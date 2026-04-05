@@ -1,5 +1,9 @@
 # Book manuscript (private)
 The Book/
 
+# Source PDFs and extracted text
+blog/*.pdf
+blog/*.txt
+
 # Claude config
 .claude/
